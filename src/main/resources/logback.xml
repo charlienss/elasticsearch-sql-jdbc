@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- %d日期，%t线程名，%c类的全名，%p日志级别，%file文件名，%line行数，%m%n输出的信息 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d [%t] [%c] [%p] (%file:%line\)- %m%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+<!--	<appender name="SYS_SERVER"-->
+<!--		class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--		<File>data/log/automarket-server.log</File>-->
+<!--		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--			<fileNamePattern>data/log/automarket-server.log.%d.%i</fileNamePattern>-->
+<!--			<timeBasedFileNamingAndTriggeringPolicy-->
+<!--				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+<!--				&lt;!&ndash; or whenever the file size reaches 64 MB &ndash;&gt;-->
+<!--				<maxFileSize>64 MB</maxFileSize>-->
+<!--			</timeBasedFileNamingAndTriggeringPolicy>-->
+<!--			&lt;!&ndash; 保留天数 &ndash;&gt;-->
+<!--			<maxHistory>7</maxHistory>-->
+<!--		</rollingPolicy>-->
+<!--		<encoder>-->
+<!--			<pattern>-->
+<!--				%d [%t] [%c] [%p] (%file:%line\)- %m%n-->
+<!--			</pattern>-->
+<!--			<charset>UTF-8</charset> &lt;!&ndash; 此处设置字符集 &ndash;&gt;-->
+<!--		</encoder>-->
+<!--	</appender>-->
+
+	<appender name="SYS_SERVER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>/data/log/jetty/automarket-server.log</File>
+		<append>true</append>
+		<!--过滤器,只打INFO级别的日志-->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/log/jetty/automarket-server.log.%d</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder charset="UTF-8">
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %level [%thread] %file:%line - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<appender name="SYS_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>/data/log/jetty/automarket-error.log</File>
+		<append>true</append>
+		<!--过滤器,只打ERROR级别的日志-->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/log/jetty/automarket-error.log.%d</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+
+		<encoder charset="UTF-8">
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %level [%thread] %file:%line - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="SYS_SERVER" />
+		<appender-ref ref="SYS_ERROR"/>
+	</root>
+	<logger name="com.wakedata.dss.automarket" level="DEBUG"/>
+	<logger name="com.wakedata.dss.automarket" level="INFO"/>
+
+</configuration>
