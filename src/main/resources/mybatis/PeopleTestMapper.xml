@@ -28,7 +28,7 @@
         select
         <include refid="Base_Column_List"/>
         from people_test
-        where age like '${qName}%'
+        where name like #{qName}
 
     </select>
 
@@ -38,6 +38,14 @@
         <include refid="Base_Column_List"/>
         from people_test
         where age = #{age}
+    </select>
+
+
+    <select id="selectByAgeInterval" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from people_test
+        where age &gt;= #{min} and age &lt;= #{max}
     </select>
 
 

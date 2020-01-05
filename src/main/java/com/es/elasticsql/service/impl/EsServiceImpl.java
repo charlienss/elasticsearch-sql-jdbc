@@ -22,6 +22,14 @@ public class EsServiceImpl implements EsService {
         String name="李";
         int age = 15;
         List<PeopleTest> list2 =   peopleTestMapper.selectByAge(age);
+        // 模糊查询名称
+        peopleTestMapper.selectByName(name);
+
+
+        int min = 10;
+        int max = 20;
+        // 根据年龄段查询
+        peopleTestMapper.selectByAgeInterval(min,max);
 //        List<PeopleTest> list2 =   peopleTestMapper.selectByName(name);
         PeopleTest peopleTest = new PeopleTest();
         peopleTest.setAge(20);
