@@ -1,8 +1,0 @@
-spring:
-  datasource:
-    es:
-      url: jdbc:es://http://172.31.3.36:9200/timezone=UTC&page.size=250
-      driver-class-name: org.elasticsearch.xpack.sql.jdbc.jdbc.JdbcDriver
-      mapperLocations: classpath*:/mybatis/*.xml
-      configLocation: classpath:/config/elastic-mybatis.xml
-
