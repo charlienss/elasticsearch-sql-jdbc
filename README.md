@@ -1,4 +1,4 @@
-## ElasticSearch-Sql + Mybatis + druid + SpringBoot 实现ES的综合操作
+## ElasticSearch-Sql + Mybatis + Druid + SpringBoot 实现ES的综合操作
 #### 1.安装ElasticSearch6.5.1
 
 ​		解压相关的ElasticSearch6.5.1的tar包到目录下,如果我们需要使用JDBC来连接的话是需要到白金版以上的,分享出本人将基础版破解为白金版的包给大家.
