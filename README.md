@@ -253,7 +253,6 @@ ElasticSearch的bin目录下面:
         <log4j2.version>2.8.2</log4j2.version>
         <slf4j.version>1.7.25</slf4j.version>
         <druid.version>1.1.10</druid.version>
-        <dss.common.version>3.0.0-RC04</dss.common.version>
         <spring.version>5.0.2.RELEASE</spring.version>
     </properties>
 
