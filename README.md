@@ -666,12 +666,6 @@ Elasticsearch-jdbc工具包（废弃）,虽然是官方推荐的，但是已经�
 
 此处我使用的jar的版本为:mysql-connector-java-5.1.46.jar.后面我们会把这个jar包放在logstash的config目录下面
 
-##### 网盘地址:
-
-```
-链接:https://pan.baidu.com/s/13v2eSDKOGBH2ByR8ifyxXA
-提取码:4ar3
-```
 
 ##### ②下载logstash-6.3.0
 
