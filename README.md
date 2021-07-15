@@ -1,4 +1,4 @@
-#使用ElasticSearch6.5白金版本从构建ELK、集群搭建到和Mybatis结合操作详细讲解
+# 使用ElasticSearch6.5白金版本从构建ELK、集群搭建到和Mybatis结合操作详细讲解
 #### 1.安装ElasticSearch6.5.1
 
 ​		使用的ElasticSearch版本为6.5.1，如果我们需要使用JDBC来连接的话是需要到白金版以上的，请务必保证版本正确可用。
