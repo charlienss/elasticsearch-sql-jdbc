@@ -1,24 +1,44 @@
-## ElasticSearch-Sql + Mybatis + Druid + SpringBoot 实现ES的综合操作
 #### 1.安装ElasticSearch6.5.1
 
-​		解压相关的ElasticSearch6.5.1的tar包到目录下,如果我们需要使用JDBC来连接的话是需要到白金版以上的,分享出本人将基础版破解为白金版的包给大家.
+​		使用的ElasticSearch版本为6.5.1，如果我们需要使用JDBC来连接的话是需要到白金版以上的，请务必保证版本正确可用。
 
-##### 本人已将破解包放项目的file分支,拉取相应分支即可获得,项目file分支地址如下:
-
-```java
-欢迎start:
-https://github.com/fengcharly/elasticsearch-sql-jdbc/tree/file
-```
-
-##### 关于破解:
-
-​		由于我们的包替换了相应的class文件,所以直接解压即可,然后把license放到相应的位置并执行以下的命令,看到返回的是Active就代表已经破解完成:
+##### ①官网下载地址：
 
 ```java
-curl -XPOST  -H 'Content-Type:application/json'  -d @license-platinum.json  'http://192.168.142.128:9200/_xpack/license?acknowledge=true&pretty'
+https://www.elastic.co/downloads/past-releases/elasticsearch-6-5-1
 ```
 
-##### 映射关系如下:
+##### ②下载并解压tar包,修改配置文件elasticsearch.yml
+
+```java
+// 进入/data/elasticsearch-6.5.1目录，使用编辑器：
+# vim elasticsearch.yml
+// 取消如下注释，并修改为当前主机地址：
+　　　　cluster.name: my-application
+　　　　node.name: node-1
+　　　　bootstrap.memory_lock: false
+　　　　network.host: 192.168.142.128
+　　　　http.port: 9200
+　　　　discovery.zen.ping.unicast.hosts: ["192.168.142.128"]
+　　　　discovery.zen.minimum_master_nodes: 1 #注意，如果是单节点，这里必须为1
+// 新增如下配置:
+　　　　transport.tcp.port: 9300
+　　　　transport.tcp.compress: true
+　　　　bootstrap.system_call_filter: false
+```
+
+##### ③新建一个用户admin（用户名随意）
+
+出于安全考虑，elasticsearch默认不允许以root账号运行。
+
+```
+创建用户：useradd admin
+设置密码：passwd admin
+切换用户：su admin
+添加权限：chown -R admin /data/elasticsearch-6.5.1
+```
+
+##### ④映射关系如下:
 
 | Mysql               | Elasticsearch         |
 | ------------------- | --------------------- |
@@ -220,7 +240,7 @@ ElasticSearch的bin目录下面:
 ./elasticsearch -d  后台的启动方式
 ```
 
-##### ③启动后需要升级为白金版,命令在上面查找
+##### 
 
 #### 4.使用SpringBoot连接ElasticSearch-sql+mybatis的操作:
 
@@ -307,12 +327,7 @@ ElasticSearch的bin目录下面:
             <version>${druid.version}</version><!--$NO-MVN-MAN-VER$-->
         </dependency>
 
-        <dependency>
-            <groupId>com.meizu</groupId>
-            <artifactId>meizu-framework-datasource</artifactId>
-            <version>1.2</version>
-        </dependency>
-
+     
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
